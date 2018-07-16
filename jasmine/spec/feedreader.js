@@ -105,6 +105,23 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        let oldFeed;
+        let newFeed;
+
+        beforeEach(function(done){
+            loadFeed(0, function(){
+                oldFeed = $('.feed').html();
+                done();
+            });
+        })
+
+        it('new feed loads', function(done) {
+           loadFeed(2, function(){
+                newFeed = $('.feed').html();
+           });
+
+            expect(newFeed).not.toBe(oldFeed);
+        })
 
          
 
